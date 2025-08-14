@@ -1,0 +1,391 @@
+/* Import DM Sans font */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap');
+
+/* Global CSS Variables */
+:root {
+  --color-light: #f0ebe6;
+  --color-dark: #000000;
+  --color-primary: #f0befa;
+  --color-offwhite: #f0ebe6;
+  --color-black: black;
+  --color-white: white;
+  --color-pink: #f0befa;
+  --color-pastelpink: #ffe1f0;
+  --color-orange: #f5693c;
+  --color-lightgreen: #e6fab9;
+  --color-darkgrey: #2d2d2d;
+  --color-darkblue: #4b69f0;
+  --color-green: #2d7864;
+  --color-blue: #82a0ff;
+  --color-maroonred: #a0325a;
+  --border-radius-l: 1.25em;
+  --border-radius-s: 0.5em;
+  --border-radius-m: 0.75em;
+  --animation-default-fast: 0.4s cubic-bezier(0.625, 0.05, 0, 1);
+  --animation-default: 0.8s cubic-bezier(0.625, 0.05, 0, 1);
+  --animation-bounce-fast: 0.6s cubic-bezier(0.35, 1.75, 0.6, 1);
+  --animation-bounce: 0.8s cubic-bezier(0.35, 1.75, 0.6, 1);
+  --animation-ease: 0.2s ease;
+  --animation-expo: 0.8s cubic-bezier(0.87, 0, 0.13, 1);
+  --animation-expo-fast: 0.4s cubic-bezier(0.87, 0, 0.13, 1);
+  --size-container-ideal: 1440;
+  --size-container-min: 992px;
+  --size-container-max: 1920px;
+  --size-font: 16px;
+  --section-padding: 12em;
+  --container-padding-l: 6.75em;
+  --container-padding-m: 2.5em;
+  --container-padding-xl: 10.625em;
+  --container-padding-s: 0.75em;
+  --gap: 2.5em;
+  --vh-in-px: 8px;
+  --vh: var(--vh-in-px);
+  --unit-width: 16px;
+}
+
+/* Mobile First Responsive Breakpoints */
+/* Extra Small devices (phones, 320px and up) */
+@media screen and (max-width: 479px) {
+  :root {
+    --size-container-ideal: 320;
+    --size-container-min: 320px;
+    --size-container-max: 479px;
+    --section-padding: 2em;
+    --container-padding-l: 1em;
+    --container-padding-m: 1em;
+    --container-padding-s: 0.5em;
+    --gap: 1em;
+    --size-font: 14px;
+  }
+}
+
+/* Small devices (phones, 480px to 767px) */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  :root {
+    --size-container-ideal: 480;
+    --size-container-min: 480px;
+    --size-container-max: 767px;
+    --section-padding: 3em;
+    --container-padding-l: 1.25em;
+    --container-padding-m: 1.25em;
+    --container-padding-s: 0.75em;
+    --gap: 1.25em;
+    --size-font: 15px;
+  }
+}
+
+/* Medium devices (tablets, 768px to 991px) */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  :root {
+    --size-container-ideal: 768;
+    --size-container-min: 768px;
+    --size-container-max: 991px;
+    --section-padding: 6em;
+    --container-padding-l: 2em;
+    --container-padding-m: 1.75em;
+    --container-padding-s: 1em;
+    --gap: 1.75em;
+    --size-font: 16px;
+  }
+}
+
+/* Large devices (desktops, 992px to 1199px) */
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  :root {
+    --size-container-ideal: 992;
+    --size-container-min: 992px;
+    --size-container-max: 1199px;
+    --section-padding: 8em;
+    --container-padding-l: 3em;
+    --container-padding-m: 2em;
+    --gap: 2em;
+    --size-font: 16px;
+  }
+}
+
+/* Extra Large devices (large desktops, 1200px to 1439px) */
+@media screen and (min-width: 1200px) and (max-width: 1439px) {
+  :root {
+    --size-container-ideal: 1200;
+    --size-container-min: 1200px;
+    --size-container-max: 1439px;
+    --section-padding: 10em;
+    --container-padding-l: 4em;
+    --container-padding-m: 2.25em;
+    --gap: 2.25em;
+    --size-font: 17px;
+  }
+}
+
+/* XXL devices (very large desktops, 1440px and up) */
+@media screen and (min-width: 1440px) {
+  :root {
+    --size-container-ideal: 1440;
+    --size-container-min: 1440px;
+    --size-container-max: 1920px;
+    --section-padding: 12em;
+    --container-padding-l: 6.75em;
+    --container-padding-m: 2.5em;
+    --gap: 2.5em;
+    --size-font: 18px;
+  }
+}
+
+/* Ultra-wide screens */
+@media screen and (min-width: 1920px) {
+  :root {
+    --section-padding: 15em;
+    --container-padding-l: 8em;
+    --size-font: 20px;
+  }
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* FIXED BACKGROUND - Applied to html for consistent coverage */
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-family: 'DM Sans', sans-serif;
+  scroll-behavior: smooth;
+  /* Fixed background that covers entire viewport consistently */
+  background: linear-gradient(135deg, 
+    #f0ebe6 0%, 
+    #ede4d3 25%, 
+    #e8dcc6 50%, 
+    #f0ebe6 75%, 
+    #f5f0e8 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+/* Body inherits background and ensures full coverage */
+body {
+  color: var(--color-dark);
+  font-family: 'DM Sans', Arial, sans-serif;
+  font-size: var(--size-font);
+  line-height: 1.4;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Ensure background continuity */
+  background: transparent;
+}
+
+/* Fallback for devices that don't support background-attachment: fixed */
+@media (hover: none) and (pointer: coarse) {
+  html {
+    background-attachment: scroll;
+  }
+}
+
+/* Hide scrollbars but keep functionality */
+body ::-webkit-scrollbar, 
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  background: transparent;
+}
+
+body, html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-dark);
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background-color: var(--color-primary);
+  color: var(--color-dark);
+  text-shadow: none;
+}
+
+/* Custom cursor */
+body, body * {
+  cursor: auto;
+}
+
+/* Responsive typography with fluid scaling */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Sans', Arial, sans-serif;
+  color: var(--color-dark);
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+h1 { font-size: clamp(1.75rem, 4vw, 3rem); }
+h2 { font-size: clamp(1.5rem, 3.5vw, 2.5rem); }
+h3 { font-size: clamp(1.25rem, 3vw, 2rem); }
+h4 { font-size: clamp(1.125rem, 2.5vw, 1.5rem); }
+h5 { font-size: clamp(1rem, 2vw, 1.25rem); }
+h6 { font-size: clamp(0.875rem, 1.5vw, 1.125rem); }
+
+p {
+  font-family: 'DM Sans', Arial, sans-serif;
+  color: var(--color-dark);
+  line-height: 1.4;
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+}
+
+/* Enhanced Container classes with fluid responsiveness */
+.container {
+  max-width: var(--size-container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-m);
+  width: 100%;
+}
+
+.container-fluid {
+  width: 100%;
+  padding: 0 var(--container-padding-s);
+}
+
+.section {
+  padding: var(--section-padding) 0;
+  position: relative;
+}
+
+/* Responsive grid system */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 calc(var(--gap) / -2);
+}
+
+.col {
+  flex: 1;
+  padding: 0 calc(var(--gap) / 2);
+  min-width: 0;
+}
+
+/* Responsive column classes */
+@media screen and (max-width: 767px) {
+  .col-mobile-12 { flex: 0 0 100%; }
+  .col-mobile-6 { flex: 0 0 50%; }
+  .col-mobile-4 { flex: 0 0 33.333333%; }
+  .col-mobile-3 { flex: 0 0 25%; }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .col-tablet-12 { flex: 0 0 100%; }
+  .col-tablet-6 { flex: 0 0 50%; }
+  .col-tablet-4 { flex: 0 0 33.333333%; }
+  .col-tablet-3 { flex: 0 0 25%; }
+}
+
+@media screen and (min-width: 992px) {
+  .col-desktop-12 { flex: 0 0 100%; }
+  .col-desktop-6 { flex: 0 0 50%; }
+  .col-desktop-4 { flex: 0 0 33.333333%; }
+  .col-desktop-3 { flex: 0 0 25%; }
+}
+
+/* Utility classes */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.d-none { display: none; }
+.d-block { display: block; }
+.d-flex { display: flex; }
+.d-grid { display: grid; }
+
+/* Responsive visibility classes */
+@media screen and (max-width: 767px) {
+  .d-mobile-none { display: none; }
+  .d-mobile-block { display: block; }
+  .d-mobile-flex { display: flex; }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .d-tablet-none { display: none; }
+  .d-tablet-block { display: block; }
+  .d-tablet-flex { display: flex; }
+}
+
+@media screen and (min-width: 992px) {
+  .d-desktop-none { display: none; }
+  .d-desktop-block { display: block; }
+  .d-desktop-flex { display: flex; }
+}
+
+/* Spacing utilities */
+.m-0 { margin: 0; }
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mt-5 { margin-top: 3rem; }
+
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mb-5 { margin-bottom: 3rem; }
+
+.p-0 { padding: 0; }
+.pt-1 { padding-top: 0.25rem; }
+.pt-2 { padding-top: 0.5rem; }
+.pt-3 { padding-top: 1rem; }
+.pt-4 { padding-top: 1.5rem; }
+.pt-5 { padding-top: 3rem; }
+
+.pb-1 { padding-bottom: 0.25rem; }
+.pb-2 { padding-bottom: 0.5rem; }
+.pb-3 { padding-bottom: 1rem; }
+.pb-4 { padding-bottom: 1.5rem; }
+.pb-5 { padding-bottom: 3rem; }
+
+/* Enhanced responsive behavior */
+@media screen and (max-width: 479px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .section {
+    padding: 2rem 0;
+  }
+  
+  .row {
+    margin: 0 -0.5rem;
+  }
+  
+  .col {
+    padding: 0 0.5rem;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+  
+  .section {
+    padding: 3rem 0;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .container {
+    padding: 0 1.75rem;
+  }
+  
+  .section {
+    padding: 6rem 0;
+  }
+}

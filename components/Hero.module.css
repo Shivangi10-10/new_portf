@@ -1,0 +1,476 @@
+/* Global CSS Variables - add this to your globals.css or _app.js */
+:root {
+  --color-light: #f0ebe6;
+  --color-dark: #000000;
+  --color-primary: #f0befa;
+  --color-offwhite: #f0ebe6;
+  --color-black: black;
+  --color-white: white;
+  --color-pink: #f0befa;
+  --color-pastelpink: #ffe1f0;
+  --color-orange: #f5693c;
+  --color-lightgreen: #e6fab9;
+  --color-darkgrey: #2d2d2d;
+  --color-darkblue: #4b69f0;
+  --color-green: #2d7864;
+  --color-blue: #82a0ff;
+  --color-maroonred: #a0325a;
+  --border-radius-l: 1.25em;
+  --border-radius-s: 0.5em;
+  --border-radius-m: 0.75em;
+  --animation-default-fast: 0.4s cubic-bezier(0.625, 0.05, 0, 1);
+  --animation-default: 0.8s cubic-bezier(0.625, 0.05, 0, 1);
+  --animation-bounce-fast: 0.6s cubic-bezier(0.35, 1.75, 0.6, 1);
+  --animation-bounce: 0.8s cubic-bezier(0.35, 1.75, 0.6, 1);
+  --animation-ease: 0.2s ease;
+  --animation-expo: 0.8s cubic-bezier(0.87, 0, 0.13, 1);
+  --animation-expo-fast: 0.4s cubic-bezier(0.87, 0, 0.13, 1);
+  --size-container-ideal: 1440;
+  --size-container-min: 992px;
+  --size-container-max: 1920px;
+  --size-font: 16px;
+  --section-padding: 12em;
+  --container-padding-l: 6.75em;
+  --container-padding-m: 2.5em;
+  --container-padding-xl: 10.625em;
+  --container-padding-s: 0.75em;
+  --gap: 2.5em;
+  --vh-in-px: 8px;
+  --vh: var(--vh-in-px);
+  --unit-width: 16px;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, 
+    #f0ebe6 0%, 
+    #ede4d3 25%, 
+    #e8dcc6 50%, 
+    #f0ebe6 75%, 
+    #f5f0e8 100%);
+  color: var(--color-dark);
+  overflow: hidden;
+  position: relative;
+  padding: 2rem;
+  font-family: 'DM Sans', Arial, sans-serif;
+}
+
+.heroContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  width: 90%;
+  max-width: 1200px;
+}
+
+/* Container */
+.horizontalWordsRelative {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* Main Heading */
+.horizontalWordsH2 {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 0.9;
+  font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 400;
+  color: var(--color-dark);
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Text Sections */
+.textSection {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.boldSection {
+  display: flex;
+  align-items: baseline;
+  font-weight: 700;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+/* Letters Animation */
+.letter {
+  position: relative;
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(200px);
+  transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.letter:hover {
+  transform: translate(0%, -20%) rotate(5deg) !important;
+  transition: transform 0.3s ease !important;
+}
+
+/* Description Section */
+.descriptionSection {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.descriptionText {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  line-height: 1.4;
+  color: #555;
+  text-align: left;
+  justify-content: flex-start;
+  margin-left: 0;
+  font-weight: 300;
+  font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.descriptionText .letter {
+  transition: transform 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.resumeButton {
+  background: linear-gradient(
+    135deg,
+    #f0ebe6 0%,
+    #ede4d3 25%,
+    #e8dcc6 50%,
+    #f0ebe6 75%,
+    #f5f0e8 100%
+  );
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  color: #5a4634;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid #e8dcc6;
+  transition: all 0.3s ease;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  white-space: nowrap;
+}
+
+.resumeButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #d4c4b0;
+}
+
+/* Image Section */
+.imageWrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+.heroImage {
+  width: 280px;
+  height: auto;
+  border-radius: 15px;
+  filter: grayscale(100%);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transform: translateY(0px) scale(1);
+  opacity: 1;
+}
+
+.heroImage:hover {
+  filter: grayscale(0%);
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+
+/* Floating animation for image */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.heroImage {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Stagger animation delays for letters */
+.letter:nth-child(1) { transition-delay: 0s; }
+.letter:nth-child(2) { transition-delay: 0.05s; }
+.letter:nth-child(3) { transition-delay: 0.1s; }
+.letter:nth-child(4) { transition-delay: 0.15s; }
+.letter:nth-child(5) { transition-delay: 0.2s; }
+.letter:nth-child(6) { transition-delay: 0.25s; }
+.letter:nth-child(7) { transition-delay: 0.3s; }
+.letter:nth-child(8) { transition-delay: 0.35s; }
+.letter:nth-child(9) { transition-delay: 0.4s; }
+.letter:nth-child(10) { transition-delay: 0.45s; }
+.letter:nth-child(n+11) { transition-delay: 0.5s; }
+
+/* Large Desktop */
+@media (min-width: 1440px) {
+  .hero {
+    padding: 3rem;
+  }
+  
+  .heroContent {
+    gap: 4rem;
+  }
+  
+  .horizontalWordsH2 {
+    font-size: clamp(4rem, 10vw, 7rem);
+  }
+  
+  .heroImage {
+    width: 320px;
+  }
+  
+  .descriptionText {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  }
+}
+
+/* Desktop */
+@media (max-width: 1200px) {
+  .heroContent {
+    gap: 2rem;
+  }
+  
+  .heroImage {
+    width: 250px;
+  }
+}
+
+/* Tablet Landscape */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 2rem 1.5rem;
+  }
+  
+  .heroContent {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .horizontalWordsRelative {
+    align-items: center;
+    max-width: 100%;
+  }
+  
+  .horizontalWordsH2 {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    justify-content: center;
+  }
+  
+  .textSection,
+  .boldSection {
+    justify-content: center;
+  }
+  
+  .descriptionSection {
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .heroImage {
+    width: 220px;
+  }
+}
+
+/* Tablet Portrait */
+@media (max-width: 768px) {
+  .hero {
+    padding: 1.5rem 1rem;
+    min-height: 100vh;
+  }
+  
+  .heroContent {
+    gap: 1.5rem;
+  }
+  
+  .horizontalWordsH2 {
+    font-size: clamp(2rem, 7vw, 4rem);
+  }
+  
+  .heroImage {
+    width: 200px;
+  }
+  
+  .descriptionSection {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .descriptionText {
+    font-size: clamp(0.9rem, 2.2vw, 1.2rem);
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .resumeButton {
+    padding: 0.7rem 1.2rem;
+  }
+}
+
+/* Mobile Landscape */
+@media (max-width: 640px) {
+  .hero {
+    padding: 1rem;
+  }
+  
+  .horizontalWordsH2 {
+    font-size: clamp(1.8rem, 6vw, 3rem);
+  }
+  
+  .heroImage {
+    width: 180px;
+  }
+  
+  .descriptionText {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+  }
+  
+  .resumeButton {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+  .hero {
+    padding: 0.5rem;
+    min-height: 100vh;
+  }
+  
+  .heroContent {
+    gap: 1rem;
+    width: 95%;
+  }
+  
+  .horizontalWordsRelative {
+    gap: 1rem;
+  }
+  
+  .horizontalWordsH2 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    line-height: 1.1;
+  }
+  
+  .textSection,
+  .boldSection {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .heroImage {
+    width: 160px;
+  }
+  
+  .descriptionSection {
+    gap: 0.8rem;
+  }
+  
+  .descriptionText {
+    font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+  }
+  
+  .resumeButton {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 360px) {
+  .heroContent {
+    width: 100%;
+    padding: 0 0.5rem;
+  }
+  
+  .horizontalWordsH2 {
+    font-size: clamp(1.3rem, 4.5vw, 2rem);
+  }
+  
+  .heroImage {
+    width: 140px;
+  }
+  
+  .descriptionText {
+    font-size: clamp(0.7rem, 1.6vw, 0.8rem);
+  }
+  
+  .resumeButton {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Performance optimizations */
+.horizontalWordsRelative,
+.letter,
+.heroImage {
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-dark);
+  text-shadow: none;
+}
+
+/* Responsive variables */
+@media screen and (max-width: 767px) {
+  :root {
+    --size-container-ideal: 390;
+    --size-container-min: 480px;
+    --size-container-max: 767px;
+    --section-padding: 6em;
+    --container-padding-l: 1.25em;
+    --container-padding-m: 1.25em;
+    --container-padding-s: 0.5em;
+    --gap: 1.5em;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  :root {
+    --size-container-ideal: 834;
+    --size-container-min: 768px;
+    --size-container-max: 991px;
+    --container-padding-l: 3.75em;
+    --container-padding-m: 1.75em;
+  }
+}
