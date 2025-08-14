@@ -252,42 +252,42 @@
   transform: scale(1.1);
 }
 
-/* Optimized Card Positioning for Desktop - Keep Good Size */
+/* Card Positioning - Properly centered and sized */
 .card1 {
-  width: clamp(140px, 18vw, 240px);
-  height: clamp(120px, 16vw, 210px);
-  top: clamp(60px, 15vh, 140px);
-  left: clamp(10px, 4vw, 50px);
+  width: clamp(160px, 18vw, 220px);
+  height: clamp(140px, 16vw, 190px);
+  top: clamp(80px, 18vh, 140px);
+  left: clamp(60px, 10vw, 120px);
   transform: rotate(-5deg);
   z-index: 4;
   animation: slideIn1 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
 }
 
 .card2 {
-  width: clamp(140px, 18vw, 240px);
-  height: clamp(120px, 16vw, 210px);
-  top: clamp(40px, 12vh, 120px);
-  left: clamp(80px, 16vw, 170px);
+  width: clamp(140px, 16vw, 200px);
+  height: clamp(120px, 14vw, 170px);
+  top: clamp(50px, 12vh, 100px);
+  left: clamp(130px, 20vw, 220px);
   transform: rotate(2deg);
   z-index: 3;
   animation: slideIn2 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s both;
 }
 
 .card3 {
-  width: clamp(140px, 18vw, 240px);
-  height: clamp(120px, 16vw, 210px);
-  top: clamp(50px, 14vh, 130px);
-  left: clamp(150px, 28vw, 290px);
+  width: clamp(140px, 16vw, 200px);
+  height: clamp(120px, 14vw, 170px);
+  top: clamp(70px, 16vh, 130px);
+  left: clamp(200px, 30vw, 320px);
   transform: rotate(-3deg);
   z-index: 2;
   animation: slideIn3 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s both;
 }
 
 .card4 {
-  width: clamp(140px, 18vw, 240px);
-  height: clamp(120px, 16vw, 210px);
-  top: clamp(30px, 10vh, 110px);
-  left: clamp(220px, 40vw, 410px);
+  width: clamp(140px, 16vw, 200px);
+  height: clamp(120px, 14vw, 170px);
+  top: clamp(40px, 10vh, 90px);
+  left: clamp(270px, 40vw, 420px);
   transform: rotate(4deg);
   z-index: 1;
   animation: slideIn4 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s both;
@@ -359,12 +359,12 @@
   }
   
   .card1, .card2, .card3, .card4 {
-    width: clamp(180px, 24vw, 280px);
-    height: clamp(160px, 22vw, 250px);
+    width: clamp(170px, 20vw, 240px);
+    height: clamp(150px, 18vw, 210px);
   }
 }
 
-/* Tablet Responsive - Keep Cards Decent Size */
+/* Tablet Responsive */
 @media (max-width: 1024px) {
   .container {
     gap: clamp(2rem, 4vh, 3rem);
@@ -394,37 +394,36 @@
     height: clamp(300px, 50vh, 480px);
   }
 
-  /* Keep cards at decent size for tablets */
   .card1 {
-    width: clamp(110px, 15vw, 160px);
-    height: clamp(95px, 13vw, 140px);
-    left: clamp(8px, 3vw, 35px);
-    top: clamp(50px, 12vh, 100px);
+    width: clamp(120px, 14vw, 160px);
+    height: clamp(105px, 12vw, 140px);
+    left: clamp(40px, 8vw, 80px);
+    top: clamp(70px, 16vh, 120px);
   }
   
   .card2 {
-    width: clamp(110px, 15vw, 160px);
-    height: clamp(95px, 13vw, 140px);
-    left: clamp(65px, 13vw, 120px);
-    top: clamp(35px, 9vh, 80px);
+    width: clamp(120px, 14vw, 160px);
+    height: clamp(105px, 12vw, 140px);
+    left: clamp(100px, 18vw, 140px);
+    top: clamp(45px, 10vh, 85px);
   }
   
   .card3 {
-    width: clamp(110px, 15vw, 160px);
-    height: clamp(95px, 13vw, 140px);
-    left: clamp(122px, 23vw, 205px);
-    top: clamp(45px, 11vh, 90px);
+    width: clamp(120px, 14vw, 160px);
+    height: clamp(105px, 12vw, 140px);
+    left: clamp(160px, 28vw, 200px);
+    top: clamp(60px, 14vh, 110px);
   }
   
   .card4 {
-    width: clamp(110px, 15vw, 160px);
-    height: clamp(95px, 13vw, 140px);
-    left: clamp(179px, 33vw, 290px);
-    top: clamp(30px, 8vh, 70px);
+    width: clamp(120px, 14vw, 160px);
+    height: clamp(105px, 12vw, 140px);
+    left: clamp(220px, 38vw, 260px);
+    top: clamp(35px, 8vh, 75px);
   }
 }
 
-/* Mobile Landscape - Keep Cards Readable */
+/* Mobile Landscape */
 @media (max-width: 768px) {
   .about {
     padding: clamp(2rem, 5vh, 3rem) clamp(1rem, 3vw, 1.5rem);
@@ -452,130 +451,127 @@
   }
   
   .hobbiesSection {
-    height: clamp(300px, 42vh, 380px);
+    height: clamp(320px, 45vh, 400px);
     max-width: 100%;
   }
   
   .backgroundBlob {
-    width: clamp(220px, 35vw, 320px);
-    height: clamp(260px, 42vh, 380px);
+    width: clamp(260px, 40vw, 360px);
+    height: clamp(300px, 45vh, 420px);
   }
 
-  /* Keep cards decent size on mobile landscape */
   .card1 {
-    width: clamp(90px, 12vw, 120px);
-    height: clamp(78px, 10vw, 105px);
-    left: clamp(6px, 2.5vw, 20px);
-    top: clamp(45px, 11vh, 85px);
+    width: clamp(130px, 16vw, 160px);
+    height: clamp(115px, 14vw, 140px);
+    left: clamp(25px, 5vw, 45px);
+    top: clamp(60px, 14vh, 100px);
   }
   
   .card2 {
-    width: clamp(90px, 12vw, 120px);
-    height: clamp(78px, 10vw, 105px);
-    left: clamp(50px, 11vw, 85px);
-    top: clamp(30px, 8vh, 65px);
+    width: clamp(130px, 16vw, 160px);
+    height: clamp(115px, 14vw, 140px);
+    left: clamp(75px, 14vw, 105px);
+    top: clamp(35px, 8vh, 65px);
   }
   
   .card3 {
-    width: clamp(90px, 12vw, 120px);
-    height: clamp(78px, 10vw, 105px);
-    left: clamp(94px, 20vw, 150px);
-    top: clamp(40px, 10vh, 75px);
+    width: clamp(130px, 16vw, 160px);
+    height: clamp(115px, 14vw, 140px);
+    left: clamp(125px, 23vw, 165px);
+    top: clamp(50px, 12vh, 85px);
   }
   
   .card4 {
-    width: clamp(90px, 12vw, 120px);
-    height: clamp(78px, 10vw, 105px);
-    left: clamp(138px, 29vw, 215px);
-    top: clamp(25px, 7vh, 60px);
+    width: clamp(130px, 16vw, 160px);
+    height: clamp(115px, 14vw, 140px);
+    left: clamp(175px, 32vw, 225px);
+    top: clamp(25px, 6vh, 55px);
   }
 }
 
-/* Mobile Portrait - Still Readable Cards */
+/* Mobile Portrait */
 @media (max-width: 480px) {
   .about {
     padding: clamp(1.5rem, 4vh, 2.5rem) 1rem;
   }
   
   .hobbiesSection {
-    height: clamp(280px, 38vh, 340px);
+    height: clamp(300px, 40vh, 360px);
   }
   
   .backgroundBlob {
-    width: clamp(200px, 32vw, 280px);
-    height: clamp(240px, 38vh, 320px);
+    width: clamp(240px, 38vw, 320px);
+    height: clamp(280px, 40vh, 360px);
   }
 
-  /* Keep cards usable size on mobile portrait */
   .card1 {
-    width: clamp(75px, 10vw, 100px);
-    height: clamp(65px, 8.5vw, 85px);
-    left: clamp(4px, 2vw, 12px);
-    top: clamp(40px, 9vh, 70px);
+    width: clamp(110px, 14vw, 140px);
+    height: clamp(95px, 12vw, 120px);
+    left: clamp(20px, 4vw, 30px);
+    top: clamp(50px, 11vh, 80px);
   }
   
   .card2 {
-    width: clamp(75px, 10vw, 100px);
-    height: clamp(65px, 8.5vw, 85px);
-    left: clamp(38px, 9vw, 60px);
-    top: clamp(25px, 7vh, 55px);
+    width: clamp(110px, 14vw, 140px);
+    height: clamp(95px, 12vw, 120px);
+    left: clamp(60px, 12vw, 80px);
+    top: clamp(30px, 7vh, 55px);
   }
   
   .card3 {
-    width: clamp(75px, 10vw, 100px);
-    height: clamp(65px, 8.5vw, 85px);
-    left: clamp(72px, 16vw, 108px);
-    top: clamp(35px, 8vh, 65px);
+    width: clamp(110px, 14vw, 140px);
+    height: clamp(95px, 12vw, 120px);
+    left: clamp(100px, 20vw, 130px);
+    top: clamp(40px, 9vh, 70px);
   }
   
   .card4 {
-    width: clamp(75px, 10vw, 100px);
-    height: clamp(65px, 8.5vw, 85px);
-    left: clamp(106px, 23vw, 156px);
-    top: clamp(20px, 6vh, 50px);
+    width: clamp(110px, 14vw, 140px);
+    height: clamp(95px, 12vw, 120px);
+    left: clamp(140px, 28vw, 180px);
+    top: clamp(20px, 5vh, 45px);
   }
   
   .overlayText {
-    font-size: clamp(0.55rem, 1vw, 0.7rem);
+    font-size: clamp(0.65rem, 1.2vw, 0.8rem);
   }
   
   .playButton {
-    width: 1.5rem;
-    height: 1.5rem;
-    font-size: 0.7rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    font-size: 0.8rem;
   }
 }
 
-/* Extra small devices - Minimum Readable Size */
+/* Extra small devices */
 @media (max-width: 360px) {
   .hobbiesSection {
-    height: clamp(260px, 35vh, 300px);
+    height: clamp(280px, 38vh, 320px);
   }
   
   .backgroundBlob {
-    width: clamp(180px, 30vw, 240px);
-    height: clamp(220px, 35vh, 280px);
+    width: clamp(220px, 35vw, 280px);
+    height: clamp(260px, 38vh, 320px);
   }
   
-  /* Minimum readable card size */
   .card1, .card2, .card3, .card4 {
-    width: clamp(65px, 9vw, 85px);
-    height: clamp(55px, 7.5vw, 75px);
+    width: clamp(95px, 12vw, 120px);
+    height: clamp(82px, 10vw, 105px);
   }
   
-  .card1 { left: 3px; top: clamp(35px, 8vh, 60px); }
-  .card2 { left: 32px; top: clamp(20px, 6vh, 45px); }
-  .card3 { left: 61px; top: clamp(30px, 7vh, 55px); }
-  .card4 { left: 90px; top: clamp(15px, 5vh, 40px); }
+  .card1 { left: 15px; top: clamp(45px, 10vh, 70px); }
+  .card2 { left: 50px; top: clamp(25px, 6vh, 45px); }
+  .card3 { left: 85px; top: clamp(35px, 8vh, 60px); }
+  .card4 { left: 120px; top: clamp(15px, 4vh, 35px); }
   
   .overlayText {
-    font-size: 0.5rem;
+    font-size: clamp(0.6rem, 1.1vw, 0.75rem);
   }
   
   .playButton {
-    width: 1.2rem;
-    height: 1.2rem;
-    font-size: 0.6rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -615,4 +611,24 @@
   .overlayText {
     font-weight: 700;
   }
+}
+
+@media (max-width: 768px) {
+  .cards-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card1, .card2, .card3, .card4 {
+    position: absolute;
+    width: clamp(160px, 45vw, 200px);
+    height: clamp(140px, 35vw, 180px);
+  }
+
+  .card1 { transform: translate(-60%, -20%) rotate(-5deg); }
+  .card2 { transform: translate(-20%, -30%) rotate(2deg); }
+  .card3 { transform: translate(20%, -10%) rotate(-3deg); }
+  .card4 { transform: translate(60%, -20%) rotate(4deg); }
 }
