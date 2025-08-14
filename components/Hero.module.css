@@ -1,5 +1,5 @@
 /* Global CSS Variables - add this to your globals.css or _app.js */
-:root {
+/* :root {
   --color-light: #f0ebe6;
   --color-dark: #000000;
   --color-primary: #f0befa;
@@ -38,7 +38,7 @@
   --vh-in-px: 8px;
   --vh: var(--vh-in-px);
   --unit-width: 16px;
-}
+} */
 
 /* Hero Section */
 .hero {
@@ -445,14 +445,14 @@
 }
 
 /* Selection styling */
-::selection {
+/* ::selection {
   background-color: var(--color-primary);
   color: var(--color-dark);
   text-shadow: none;
-}
+} */
 
 /* Responsive variables */
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
   :root {
     --size-container-ideal: 390;
     --size-container-min: 480px;
@@ -463,9 +463,9 @@
     --container-padding-s: 0.5em;
     --gap: 1.5em;
   }
-}
+} */
 
-@media screen and (max-width: 991px) {
+/* @media screen and (max-width: 991px) {
   :root {
     --size-container-ideal: 834;
     --size-container-min: 768px;
@@ -473,4 +473,4 @@
     --container-padding-l: 3.75em;
     --container-padding-m: 1.75em;
   }
-}
+} */
