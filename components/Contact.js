@@ -5,7 +5,7 @@ import Image from 'next/image';
 export default function Contact() {
   return (
     <div className={styles.container} id="contact">
-       <div className={styles.title}>shivangi's socials</div>
+       <div className={styles.title}>shivangi&apos;s socials</div>
        <br></br><br></br><br></br>
       <div className={styles.cardsWrapper}>
 
