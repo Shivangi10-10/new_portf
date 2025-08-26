@@ -171,7 +171,7 @@ export default function Hero() {
 
           <div className={styles.descriptionSection}>
             <a
-              href="https://drive.google.com/file/d/1p9Drt3rz3lrSxEw9JmPlvZ-BNTkCP8Et/view?usp=drivesdk"
+              href="https://drive.google.com/file/d/1GAbnJFiCOqRTOmZ6Y5KS0dQVt_RiSKDu/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.resumeButton}
