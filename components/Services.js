@@ -4,6 +4,18 @@ import styles from './Services.module.css';
 const Services = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState(new Set());
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   const skillsData = {
     'Frontend Development': {
@@ -218,6 +230,16 @@ const Services = () => {
           flex: 1;
         }
 
+        .mobile-stack-container {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+          padding: 1rem 0;
+          align-items: center;
+          max-width: 100%;
+          overflow-y: auto;
+        }
+
         .connections-svg {
           position: absolute;
           top: 0;
@@ -247,6 +269,13 @@ const Services = () => {
           cursor: pointer;
         }
 
+        .category-node.mobile-card {
+          position: relative;
+          transform: none;
+          width: 100%;
+          max-width: 350px;
+        }
+
         .category-node.hidden {
           opacity: 0.2;
           pointer-events: none;
@@ -266,6 +295,12 @@ const Services = () => {
           overflow: hidden;
         }
 
+        .category-box.mobile-box {
+          min-width: 100%;
+          max-width: 100%;
+          width: 100%;
+        }
+
         .category-box::before {
           content: '';
           position: absolute;
@@ -282,9 +317,17 @@ const Services = () => {
           box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
         }
 
+        .category-node.mobile-card:hover .category-box {
+          transform: translateY(-3px);
+        }
+
         .category-node.selected .category-box {
           background: rgba(255, 255, 255, 1);
           transform: translateY(-5px) scale(1.05);
+        }
+
+        .category-node.mobile-card.selected .category-box {
+          transform: translateY(-3px) scale(1.02);
         }
 
         .category-header {
@@ -403,11 +446,11 @@ const Services = () => {
           }
         }
 
-        /* Mobile Landscape */
+        /* Mobile Landscape and smaller - Switch to stack layout */
         @media (max-width: 768px) {
           .skills-section {
             padding: 1.5rem 0.75rem;
-            min-height: 100vh;
+            min-height: auto;
           }
           
           .title {
@@ -420,23 +463,26 @@ const Services = () => {
           }
           
           .flowchart-container {
-            height: 80vh;
-            min-height: 500px;
+            height: auto;
+            min-height: auto;
+          }
+          
+          .mobile-stack-container {
+            gap: 1.2rem;
+            padding: 0.5rem 0;
           }
           
           .category-box {
-            min-width: 140px;
-            max-width: 180px;
-            padding: 0.9rem;
+            padding: 1rem;
           }
           
           .category-title {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
           }
           
           .skill-logo {
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
           }
           
           .skill-name {
@@ -444,8 +490,8 @@ const Services = () => {
           }
           
           .skills-grid {
-            gap: 0.5rem;
-            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: 0.6rem;
+            grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
           }
         }
 
@@ -468,19 +514,17 @@ const Services = () => {
             margin-bottom: 1.5rem;
           }
           
-          .flowchart-container {
-            height: 85vh;
-            min-height: 450px;
+          .mobile-stack-container {
+            gap: 1rem;
+            padding: 0.25rem 0;
           }
           
           .category-box {
-            min-width: 120px;
-            max-width: 160px;
-            padding: 0.75rem;
+            padding: 0.9rem;
           }
           
           .category-title {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             line-height: 1.1;
           }
           
@@ -490,9 +534,9 @@ const Services = () => {
           }
           
           .skill-logo {
-            width: 20px;
-            height: 20px;
-            margin-bottom: 0.3rem;
+            width: 24px;
+            height: 24px;
+            margin-bottom: 0.4rem;
           }
           
           .skill-name {
@@ -500,13 +544,13 @@ const Services = () => {
           }
           
           .skills-grid {
-            gap: 0.4rem;
-            grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+            gap: 0.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
           }
           
           .category-header {
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.6rem;
           }
         }
 
@@ -520,19 +564,21 @@ const Services = () => {
             font-size: 0.85rem;
           }
           
+          .mobile-stack-container {
+            gap: 0.8rem;
+          }
+          
           .category-box {
-            min-width: 110px;
-            max-width: 140px;
-            padding: 0.6rem;
+            padding: 0.8rem;
           }
           
           .category-title {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
           }
           
           .skill-logo {
-            width: 18px;
-            height: 18px;
+            width: 22px;
+            height: 22px;
           }
           
           .skill-name {
@@ -540,7 +586,8 @@ const Services = () => {
           }
           
           .skills-grid {
-            grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(55px, 1fr));
+            gap: 0.4rem;
           }
         }
 
@@ -591,118 +638,199 @@ const Services = () => {
             My comprehensive development stack organized by expertise areas
           </p>
           <div className={styles.titleUnderline}></div>
-          
         </div>
 
-        <div className={styles.flowchartContainer}>
-          <svg className={styles.connectionsSvg}>
-            {connections.map((connection, index) => {
-              const fromCategory = skillsData[connection.from];
-              const toCategory = skillsData[connection.to];
-              if (!fromCategory || !toCategory) return null;
-              
-              const isConnectionVisible = isCategoryVisible(connection.from) && isCategoryVisible(connection.to);
-              
-              return (
-                <line
-                  key={index}
-                  x1={`${fromCategory.position.x}%`}
-                  y1={`${fromCategory.position.y}%`}
-                  x2={`${toCategory.position.x}%`}
-                  y2={`${toCategory.position.y}%`}
-                  className={`${styles.connectionLine} ${
-                    selectedCategories.has(connection.from) || selectedCategories.has(connection.to) 
-                      ? styles.highlighted : ''
-                  }`}
-                  strokeDasharray="5,5"
-                  style={{
-                    opacity: isConnectionVisible ? (selectedCategories.has(connection.from) || selectedCategories.has(connection.to) ? 0.8 : 0.4) : 0
-                  }}
-                />
-              );
-            })}
-          </svg>
-
-          {Object.entries(skillsData).map(([category, data], index) => (
-            <div
-              key={category}
-              className={`${styles.categoryNode} ${
-                activeCategory === category ? styles.hovered : ''
-              } ${
-                selectedCategories.has(category) ? styles.selected : ''
-              } ${
-                !isCategoryVisible(category) ? styles.hidden : ''
-              }`}
-              style={{
-                left: `${data.position.x}%`,
-                top: `${data.position.y}%`,
-                animationDelay: `${index * 0.15}s`,
-                opacity: isCategoryVisible(category) ? 1 : 0.2,
-                transform: isCategoryVisible(category) 
-                  ? 'translate(-50%, -50%) scale(1)' 
-                  : 'translate(-50%, -50%) scale(0.8)',
-                transition: 'all 0.3s ease',
-                pointerEvents: isCategoryVisible(category) ? 'auto' : 'none'
-              }}
-              onMouseEnter={() => setActiveCategory(category)}
-              onMouseLeave={() => setActiveCategory(null)}
-              onClick={() => handleCategoryClick(category)}
-            >
-              <div 
-                className={styles.categoryBox}
-                style={{ 
-                  borderColor: data.color,
-                  boxShadow: selectedCategories.has(category) 
-                    ? `0 0 25px ${data.color}40, 0 0 50px ${data.color}20`
-                    : `0 10px 30px rgba(0, 0, 0, 0.1)`
+        {isMobile ? (
+          // Mobile Stack Layout
+          <div className="mobile-stack-container">
+            {Object.entries(skillsData).map(([category, data], index) => (
+              <div
+                key={category}
+                className={`category-node mobile-card ${
+                  activeCategory === category ? 'hovered' : ''
+                } ${
+                  selectedCategories.has(category) ? 'selected' : ''
+                } ${
+                  !isCategoryVisible(category) ? 'hidden' : ''
+                }`}
+                style={{
+                  animationDelay: `${index * 0.1}s`,
+                  opacity: isCategoryVisible(category) ? 1 : 0.2,
+                  transform: isCategoryVisible(category) ? 'scale(1)' : 'scale(0.95)',
+                  transition: 'all 0.3s ease',
+                  pointerEvents: isCategoryVisible(category) ? 'auto' : 'none'
                 }}
+                onMouseEnter={() => setActiveCategory(category)}
+                onMouseLeave={() => setActiveCategory(null)}
+                onClick={() => handleCategoryClick(category)}
               >
                 <div 
-                  className={styles.categoryHeader}
+                  className="category-box mobile-box"
                   style={{ 
-                    color: data.color,
-                    borderBottomColor: `${data.color}30`
+                    borderColor: data.color,
+                    boxShadow: selectedCategories.has(category) 
+                      ? `0 0 25px ${data.color}40, 0 0 50px ${data.color}20`
+                      : `0 8px 25px rgba(0, 0, 0, 0.1)`
                   }}
                 >
-                  <span className={styles.categoryTitle}>{category}</span>
                   <div 
-                    className={styles.skillCount}
-                    style={{ backgroundColor: data.color }}
+                    className="category-header"
+                    style={{ 
+                      color: data.color,
+                      borderBottomColor: `${data.color}30`
+                    }}
                   >
-                    {data.skills.length}
+                    <span className="category-title">{category}</span>
+                    <div 
+                      className="skill-count"
+                      style={{ backgroundColor: data.color }}
+                    >
+                      {data.skills.length}
+                    </div>
+                  </div>
+                  
+                  <div className="skills-grid">
+                    {data.skills.map((skill, skillIndex) => (
+                      <div 
+                        key={skill} 
+                        className="skill-item"
+                        style={{ animationDelay: `${(index * 0.1) + (skillIndex * 0.05)}s` }}
+                      >
+                        <img
+                          src={data.logos[skill]}
+                          alt={`${skill} logo`}
+                          className="skill-logo"
+                          onError={(e) => {
+                            e.target.style.display = 'none';
+                          }}
+                        />
+                        <span className="skill-name">{skill}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-                
-                <div className={styles.skillsGrid}>
-                  {data.skills.map((skill, skillIndex) => (
-                    <div 
-                      key={skill} 
-                      className={styles.skillItem}
-                      style={{ animationDelay: `${(index * 0.15) + (skillIndex * 0.05)}s` }}
-                    >
-                      <img
-                        src={data.logos[skill]}
-                        alt={`${skill} logo`}
-                        className={styles.skillLogo}
-                        onError={(e) => {
-                          e.target.style.display = 'none';
-                        }}
-                      />
-                      <span className={styles.skillName}>{skill}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
 
-              <div 
-                className={styles.categoryGlow}
-                style={{ 
-                  boxShadow: `0 0 30px ${data.color}25, 0 0 60px ${data.color}10` 
+                <div 
+                  className="category-glow"
+                  style={{ 
+                    boxShadow: `0 0 30px ${data.color}25, 0 0 60px ${data.color}10` 
+                  }}
+                ></div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          // Desktop Flowchart Layout
+          <div className={styles.flowchartContainer}>
+            <svg className={styles.connectionsSvg}>
+              {connections.map((connection, index) => {
+                const fromCategory = skillsData[connection.from];
+                const toCategory = skillsData[connection.to];
+                if (!fromCategory || !toCategory) return null;
+                
+                const isConnectionVisible = isCategoryVisible(connection.from) && isCategoryVisible(connection.to);
+                
+                return (
+                  <line
+                    key={index}
+                    x1={`${fromCategory.position.x}%`}
+                    y1={`${fromCategory.position.y}%`}
+                    x2={`${toCategory.position.x}%`}
+                    y2={`${toCategory.position.y}%`}
+                    className={`${styles.connectionLine} ${
+                      selectedCategories.has(connection.from) || selectedCategories.has(connection.to) 
+                        ? styles.highlighted : ''
+                    }`}
+                    strokeDasharray="5,5"
+                    style={{
+                      opacity: isConnectionVisible ? (selectedCategories.has(connection.from) || selectedCategories.has(connection.to) ? 0.8 : 0.4) : 0
+                    }}
+                  />
+                );
+              })}
+            </svg>
+
+            {Object.entries(skillsData).map(([category, data], index) => (
+              <div
+                key={category}
+                className={`${styles.categoryNode} ${
+                  activeCategory === category ? styles.hovered : ''
+                } ${
+                  selectedCategories.has(category) ? styles.selected : ''
+                } ${
+                  !isCategoryVisible(category) ? styles.hidden : ''
+                }`}
+                style={{
+                  left: `${data.position.x}%`,
+                  top: `${data.position.y}%`,
+                  animationDelay: `${index * 0.15}s`,
+                  opacity: isCategoryVisible(category) ? 1 : 0.2,
+                  transform: isCategoryVisible(category) 
+                    ? 'translate(-50%, -50%) scale(1)' 
+                    : 'translate(-50%, -50%) scale(0.8)',
+                  transition: 'all 0.3s ease',
+                  pointerEvents: isCategoryVisible(category) ? 'auto' : 'none'
                 }}
-              ></div>
-            </div>
-          ))}
-        </div>
+                onMouseEnter={() => setActiveCategory(category)}
+                onMouseLeave={() => setActiveCategory(null)}
+                onClick={() => handleCategoryClick(category)}
+              >
+                <div 
+                  className={styles.categoryBox}
+                  style={{ 
+                    borderColor: data.color,
+                    boxShadow: selectedCategories.has(category) 
+                      ? `0 0 25px ${data.color}40, 0 0 50px ${data.color}20`
+                      : `0 10px 30px rgba(0, 0, 0, 0.1)`
+                  }}
+                >
+                  <div 
+                    className={styles.categoryHeader}
+                    style={{ 
+                      color: data.color,
+                      borderBottomColor: `${data.color}30`
+                    }}
+                  >
+                    <span className={styles.categoryTitle}>{category}</span>
+                    <div 
+                      className={styles.skillCount}
+                      style={{ backgroundColor: data.color }}
+                    >
+                      {data.skills.length}
+                    </div>
+                  </div>
+                  
+                  <div className={styles.skillsGrid}>
+                    {data.skills.map((skill, skillIndex) => (
+                      <div 
+                        key={skill} 
+                        className={styles.skillItem}
+                        style={{ animationDelay: `${(index * 0.15) + (skillIndex * 0.05)}s` }}
+                      >
+                        <img
+                          src={data.logos[skill]}
+                          alt={`${skill} logo`}
+                          className={styles.skillLogo}
+                          onError={(e) => {
+                            e.target.style.display = 'none';
+                          }}
+                        />
+                        <span className={styles.skillName}>{skill}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div 
+                  className={styles.categoryGlow}
+                  style={{ 
+                    boxShadow: `0 0 30px ${data.color}25, 0 0 60px ${data.color}10` 
+                  }}
+                ></div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

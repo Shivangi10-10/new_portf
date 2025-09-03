@@ -1,4 +1,4 @@
-/* Import DM Sans font */
+/* Import DM Sans font - Updated for better loading performance */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap');
 
 /* Global CSS Variables */
@@ -141,7 +141,9 @@
 }
 
 /* Global Styles */
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -151,7 +153,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   scroll-behavior: smooth;
   /* Fixed background that covers entire viewport consistently */
   background: linear-gradient(135deg, 
@@ -164,15 +166,17 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
+  min-height: 100dvh; /* Support for dynamic viewport height */
 }
 
 /* Body inherits background and ensures full coverage */
 body {
   color: var(--color-dark);
-  font-family: 'DM Sans', Arial, sans-serif;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
   font-size: var(--size-font);
   line-height: 1.4;
   min-height: 100vh;
+  min-height: 100dvh; /* Support for dynamic viewport height */
   width: 100%;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -181,23 +185,33 @@ body {
   background: transparent;
 }
 
-/* Fallback for devices that don't support background-attachment: fixed */
+/* Improved fallback for devices that don't support background-attachment: fixed */
 @media (hover: none) and (pointer: coarse) {
   html {
     background-attachment: scroll;
   }
 }
 
-/* Hide scrollbars but keep functionality */
-body ::-webkit-scrollbar, 
-body::-webkit-scrollbar,
-html::-webkit-scrollbar {
+/* Support for older iOS versions */
+@supports (-webkit-touch-callout: none) {
+  html {
+    background-attachment: scroll;
+  }
+}
+
+/* Hide scrollbars but keep functionality - More specific selectors */
+::-webkit-scrollbar {
   display: none;
   width: 0;
   background: transparent;
 }
 
-body, html {
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -215,31 +229,73 @@ body, html {
   text-shadow: none;
 }
 
+/* Focus styles for accessibility */
+:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 /* Custom cursor */
-body, body * {
+body,
+body * {
   cursor: auto;
 }
 
-/* Responsive typography with fluid scaling */
+/* Responsive typography with fluid scaling and improved fallbacks */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'DM Sans', Arial, sans-serif;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
   color: var(--color-dark);
   line-height: 1.2;
   font-weight: 400;
+  margin: 0;
 }
 
-h1 { font-size: clamp(1.75rem, 4vw, 3rem); }
-h2 { font-size: clamp(1.5rem, 3.5vw, 2.5rem); }
-h3 { font-size: clamp(1.25rem, 3vw, 2rem); }
-h4 { font-size: clamp(1.125rem, 2.5vw, 1.5rem); }
-h5 { font-size: clamp(1rem, 2vw, 1.25rem); }
-h6 { font-size: clamp(0.875rem, 1.5vw, 1.125rem); }
+h1 { 
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-size: max(1.75rem, min(4vw, 3rem)); /* Fallback for older browsers */
+}
+
+h2 { 
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  font-size: max(1.5rem, min(3.5vw, 2.5rem)); /* Fallback for older browsers */
+}
+
+h3 { 
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-size: max(1.25rem, min(3vw, 2rem)); /* Fallback for older browsers */
+}
+
+h4 { 
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-size: max(1.125rem, min(2.5vw, 1.5rem)); /* Fallback for older browsers */
+}
+
+h5 { 
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: max(1rem, min(2vw, 1.25rem)); /* Fallback for older browsers */
+}
+
+h6 { 
+  font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+  font-size: max(0.875rem, min(1.5vw, 1.125rem)); /* Fallback for older browsers */
+}
 
 p {
-  font-family: 'DM Sans', Arial, sans-serif;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
   color: var(--color-dark);
   line-height: 1.4;
   font-size: clamp(0.875rem, 2vw, 1.125rem);
+  font-size: max(0.875rem, min(2vw, 1.125rem)); /* Fallback for older browsers */
+  margin: 0;
 }
 
 /* Enhanced Container classes with fluid responsiveness */
@@ -260,39 +316,45 @@ p {
   position: relative;
 }
 
-/* Responsive grid system */
+/* Responsive grid system with improved fallbacks */
 .row {
   display: flex;
   flex-wrap: wrap;
   margin: 0 calc(var(--gap) / -2);
+  /* Fallback for older browsers */
+  margin-left: calc(var(--gap) * -0.5);
+  margin-right: calc(var(--gap) * -0.5);
 }
 
 .col {
   flex: 1;
   padding: 0 calc(var(--gap) / 2);
+  /* Fallback for older browsers */
+  padding-left: calc(var(--gap) * 0.5);
+  padding-right: calc(var(--gap) * 0.5);
   min-width: 0;
 }
 
-/* Responsive column classes */
+/* Responsive column classes with better specificity */
 @media screen and (max-width: 767px) {
-  .col-mobile-12 { flex: 0 0 100%; }
-  .col-mobile-6 { flex: 0 0 50%; }
-  .col-mobile-4 { flex: 0 0 33.333333%; }
-  .col-mobile-3 { flex: 0 0 25%; }
+  .col-mobile-12 { flex: 0 0 100%; max-width: 100%; }
+  .col-mobile-6 { flex: 0 0 50%; max-width: 50%; }
+  .col-mobile-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .col-mobile-3 { flex: 0 0 25%; max-width: 25%; }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
-  .col-tablet-12 { flex: 0 0 100%; }
-  .col-tablet-6 { flex: 0 0 50%; }
-  .col-tablet-4 { flex: 0 0 33.333333%; }
-  .col-tablet-3 { flex: 0 0 25%; }
+  .col-tablet-12 { flex: 0 0 100%; max-width: 100%; }
+  .col-tablet-6 { flex: 0 0 50%; max-width: 50%; }
+  .col-tablet-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .col-tablet-3 { flex: 0 0 25%; max-width: 25%; }
 }
 
 @media screen and (min-width: 992px) {
-  .col-desktop-12 { flex: 0 0 100%; }
-  .col-desktop-6 { flex: 0 0 50%; }
-  .col-desktop-4 { flex: 0 0 33.333333%; }
-  .col-desktop-3 { flex: 0 0 25%; }
+  .col-desktop-12 { flex: 0 0 100%; max-width: 100%; }
+  .col-desktop-6 { flex: 0 0 50%; max-width: 50%; }
+  .col-desktop-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .col-desktop-3 { flex: 0 0 25%; max-width: 25%; }
 }
 
 /* Utility classes */
@@ -300,58 +362,82 @@ p {
 .text-left { text-align: left; }
 .text-right { text-align: right; }
 
-.d-none { display: none; }
-.d-block { display: block; }
-.d-flex { display: flex; }
-.d-grid { display: grid; }
+.d-none { display: none !important; }
+.d-block { display: block !important; }
+.d-flex { display: flex !important; }
+.d-grid { display: grid !important; }
 
-/* Responsive visibility classes */
+/* Responsive visibility classes with improved specificity */
 @media screen and (max-width: 767px) {
-  .d-mobile-none { display: none; }
-  .d-mobile-block { display: block; }
-  .d-mobile-flex { display: flex; }
+  .d-mobile-none { display: none !important; }
+  .d-mobile-block { display: block !important; }
+  .d-mobile-flex { display: flex !important; }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
-  .d-tablet-none { display: none; }
-  .d-tablet-block { display: block; }
-  .d-tablet-flex { display: flex; }
+  .d-tablet-none { display: none !important; }
+  .d-tablet-block { display: block !important; }
+  .d-tablet-flex { display: flex !important; }
 }
 
 @media screen and (min-width: 992px) {
-  .d-desktop-none { display: none; }
-  .d-desktop-block { display: block; }
-  .d-desktop-flex { display: flex; }
+  .d-desktop-none { display: none !important; }
+  .d-desktop-block { display: block !important; }
+  .d-desktop-flex { display: flex !important; }
 }
 
-/* Spacing utilities */
-.m-0 { margin: 0; }
-.mt-1 { margin-top: 0.25rem; }
-.mt-2 { margin-top: 0.5rem; }
-.mt-3 { margin-top: 1rem; }
-.mt-4 { margin-top: 1.5rem; }
-.mt-5 { margin-top: 3rem; }
+/* Spacing utilities with consistent naming */
+.m-0 { margin: 0 !important; }
+.mt-1 { margin-top: 0.25rem !important; }
+.mt-2 { margin-top: 0.5rem !important; }
+.mt-3 { margin-top: 1rem !important; }
+.mt-4 { margin-top: 1.5rem !important; }
+.mt-5 { margin-top: 3rem !important; }
 
-.mb-1 { margin-bottom: 0.25rem; }
-.mb-2 { margin-bottom: 0.5rem; }
-.mb-3 { margin-bottom: 1rem; }
-.mb-4 { margin-bottom: 1.5rem; }
-.mb-5 { margin-bottom: 3rem; }
+.mb-1 { margin-bottom: 0.25rem !important; }
+.mb-2 { margin-bottom: 0.5rem !important; }
+.mb-3 { margin-bottom: 1rem !important; }
+.mb-4 { margin-bottom: 1.5rem !important; }
+.mb-5 { margin-bottom: 3rem !important; }
 
-.p-0 { padding: 0; }
-.pt-1 { padding-top: 0.25rem; }
-.pt-2 { padding-top: 0.5rem; }
-.pt-3 { padding-top: 1rem; }
-.pt-4 { padding-top: 1.5rem; }
-.pt-5 { padding-top: 3rem; }
+.ml-1 { margin-left: 0.25rem !important; }
+.ml-2 { margin-left: 0.5rem !important; }
+.ml-3 { margin-left: 1rem !important; }
+.ml-4 { margin-left: 1.5rem !important; }
+.ml-5 { margin-left: 3rem !important; }
 
-.pb-1 { padding-bottom: 0.25rem; }
-.pb-2 { padding-bottom: 0.5rem; }
-.pb-3 { padding-bottom: 1rem; }
-.pb-4 { padding-bottom: 1.5rem; }
-.pb-5 { padding-bottom: 3rem; }
+.mr-1 { margin-right: 0.25rem !important; }
+.mr-2 { margin-right: 0.5rem !important; }
+.mr-3 { margin-right: 1rem !important; }
+.mr-4 { margin-right: 1.5rem !important; }
+.mr-5 { margin-right: 3rem !important; }
 
-/* Enhanced responsive behavior */
+.p-0 { padding: 0 !important; }
+.pt-1 { padding-top: 0.25rem !important; }
+.pt-2 { padding-top: 0.5rem !important; }
+.pt-3 { padding-top: 1rem !important; }
+.pt-4 { padding-top: 1.5rem !important; }
+.pt-5 { padding-top: 3rem !important; }
+
+.pb-1 { padding-bottom: 0.25rem !important; }
+.pb-2 { padding-bottom: 0.5rem !important; }
+.pb-3 { padding-bottom: 1rem !important; }
+.pb-4 { padding-bottom: 1.5rem !important; }
+.pb-5 { padding-bottom: 3rem !important; }
+
+.pl-1 { padding-left: 0.25rem !important; }
+.pl-2 { padding-left: 0.5rem !important; }
+.pl-3 { padding-left: 1rem !important; }
+.pl-4 { padding-left: 1.5rem !important; }
+.pl-5 { padding-left: 3rem !important; }
+
+.pr-1 { padding-right: 0.25rem !important; }
+.pr-2 { padding-right: 0.5rem !important; }
+.pr-3 { padding-right: 1rem !important; }
+.pr-4 { padding-right: 1.5rem !important; }
+.pr-5 { padding-right: 3rem !important; }
+
+/* Enhanced responsive behavior with better fallbacks */
 @media screen and (max-width: 479px) {
   .container {
     padding: 0 1rem;
@@ -387,5 +473,41 @@ p {
   
   .section {
     padding: 6rem 0;
+  }
+}
+
+/* Improved print styles */
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  html {
+    background: white !important;
+  }
+  
+  body {
+    background: white !important;
+  }
+}
+
+/* Performance optimizations for animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  html {
+    scroll-behavior: auto !important;
   }
 }

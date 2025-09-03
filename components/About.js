@@ -88,7 +88,7 @@ export default function About() {
           <div className={styles.descriptionSectionLeft}>
             <div className={styles.descriptionContent}>
               <p className={styles.descriptionText}>
-                I'm a B.Tech CSE graduate and a passionate developer with a sharp eye for detail and an obsession with turning ideas into innovative digital solutions.
+                I am a B.Tech CSE graduate and a passionate developer with a sharp eye for detail and an obsession with turning ideas into innovative digital solutions.
                 Wanna know what else keeps my creative gears turning? 🚀
               </p>
             </div>
